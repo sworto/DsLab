@@ -8,12 +8,14 @@ typedef struct node
 }node;
 node* head=NULL;
 node* ptr=NULL;
-int addnode(int);
+node* temp=NULL;
+int addnode(int,int);
 int removenode(int);
 int main()
 {
 	//Linked List Creation.
 	int n,i;
+	int value;
 	printf("Enter the size of the linked list: ");
 	scanf("%d",&n);
 	for(i=1;i<=n;i++)
@@ -23,12 +25,15 @@ int main()
 			head=(node*)malloc(sizeof(node));
 			head->val=i;
 			ptr=head;
+			ptr->prev=NULL;
 		}
 		else
 		{
 			ptr->next=(node*)malloc(sizeof(node));
+			temp=ptr;
 			ptr=ptr->next;
 			ptr->val=i;
+			ptr->prev=temp;
 		}
 	}
 	ptr->next=NULL;
@@ -43,15 +48,17 @@ int main()
 	{
 		if(sel==1)
 		{
-			printf("Enter the node number");
+			printf("Enter the node number: ");
 			scanf("%d",&input);
-			addnode(input);
-
+			printf("Enter the value: ");
+			scanf("%d",&value);
+			addnode(input,value);
 		}
 		else if(sel==2)
 		{
 			printf("Enter the node number: ");
 			scanf("%d",&input);
+			removenode(input);
 		}
 		else if(sel==3)
 		{
@@ -77,7 +84,7 @@ int main()
 	}
 	return 0;
 }
-int addnode(int input)
+int addnode(int input, int value)
 {
 	node* newnode=(node*)malloc(sizeof(node));
 	int i=1;
@@ -102,17 +109,55 @@ int addnode(int input)
 				newnode->prev=ptr;
 				ptr->next=newnode;
 			}
-			else
+			else if(ptr->next==NULL)
 			{
 				ptr->next=newnode;
 				newnode->next=NULL;
 				newnode->prev=ptr;
 			}
+			else printf("Enter a valid value.\n");
 		}
 	}
 	return 0;
 }
 int removenode(int input)
 {
-	
+	ptr=head;
+	int i=1;
+	if(head==NULL)
+	{
+		printf("Empty List\n");
+		return 0;
+	}
+	if(i==1)
+	{
+		ptr=head;
+		head=head->next;
+		head->prev=NULL;
+		free(ptr);
+	}
+	else
+	{
+		while(ptr->next&&i<input)
+		{
+			temp=ptr;
+			ptr=ptr->next;
+			i++;
+		}
+		if(i==input)
+		{
+			if(ptr->next)
+			{
+				temp->next=ptr->next;
+				ptr->next->prev=temp;
+				free(ptr);
+			}
+			else
+			{
+				temp->next=NULL;
+				free(ptr);
+			}	
+		}
+	}
+	return 0;
 }
