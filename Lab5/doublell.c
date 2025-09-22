@@ -9,6 +9,7 @@ typedef struct node
 node* head=NULL;
 node* ptr=NULL;
 int addnode(int);
+int removenode(int);
 int main()
 {
 	//Linked List Creation.
@@ -58,9 +59,14 @@ int main()
 			while(ptr)
 			{
 				printf("%d->",ptr->val);
+				ptr=ptr->next;
 			}
-			ptr=ptr->next;
 			printf("\n");
+		}
+		else if(sel==4)
+		{
+			printf("Exiting..\n");
+			return 0;
 		}
 		goto menu;
 	}
@@ -74,7 +80,7 @@ int main()
 int addnode(int input)
 {
 	node* newnode=(node*)malloc(sizeof(node));
-	int i=0;
+	int i=1;
 	ptr=head;
 	if(head==NULL)
 	{
@@ -84,8 +90,8 @@ int addnode(int input)
 	{
 		while(ptr->next&&i<input)
 		{
-			i++;
 			ptr=ptr->next;
+			i++;
 		}
 		if(i==input)
 		{
@@ -105,4 +111,8 @@ int addnode(int input)
 		}
 	}
 	return 0;
+}
+int removenode(int input)
+{
+	
 }
