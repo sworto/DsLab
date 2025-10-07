@@ -1,19 +1,24 @@
 #include <iostream>
+#include <string>
+#include <vector>
 int main()
 {
     int n,k;
-    int count=0;
-    std::string stringinput;
-    std::cin>>n >>k;
-    std::cin>>std::endl;
-    std::getline(std::cin,stringinput);
-    for(int i=0;i<n*2;i=i+2)
+    std::cin>>n>>k;
+    std::vector<int> inputval(n);
+    for(int i=0;i<n;i++)
     {
-        if(stringinput[i]>=k)
+        std::cin>>inputval[i];
+    }
+    int i;
+    int count=0;
+    for(i=0;i<n;i++)
+    {
+        if(inputval[i]>=inputval[k-1]&&inputval[i]!=0)
         {
             count++;
         }
-        else 
+        else
         {
             break;
         }
