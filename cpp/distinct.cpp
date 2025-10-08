@@ -9,7 +9,7 @@ int main()
     for(int i=0;i<name.length();i++)
     {
         state=true;
-        for(int j=0;j<name.length();j++)
+        for(int j=0;j<i;j++)
         {
             if(name[i]==name[j]&&i!=j)
             {
@@ -23,7 +23,7 @@ int main()
             
         }
     }
-    if(count%2!=0)
+    if(count%2==0)
     {
         std::cout<<"CHAT WITH HER!\n";
     }
