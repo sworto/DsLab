@@ -52,8 +52,8 @@ int main()
                 }
                 else
                 {
-                    free(head);
                     head=NULL;
+                    free(head);
                 }
             }
             else
