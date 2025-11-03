@@ -1,0 +1,29 @@
+//initialisation
+struct node
+{
+    int val;
+    struct node* next;
+}
+//pop operation
+int pop()
+{
+    if(top==NULL)
+    {
+        return;
+    }
+    struct node* ptr;
+    int x=top->val;
+    ptr=top;
+    top=top->next;
+    free(ptr);
+    return x;
+}
+//push operation
+struct node* top;
+void push(int key)
+{
+    struct node* newnode=NULL;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->next=top;
+    return;
+}
